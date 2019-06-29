@@ -443,10 +443,23 @@ class MemoryTrackerImpl : public SpecificMemoryTracker {
       std::function<void(void* dirty_addr, size_t dirty_size)> handle_dirty);
 
   bool DisableMemoryTrackerImpl() {
-    bool result = true;
+    // Loop over tracking_ranges_ but DO NOT use an iterator, as
+    // UntrackRangeImpl() itself uses iterator over tracking_ranges_ and deletes
+    // elements.
+
+    std::vector<uintptr_t> map_keys;
     for (auto& r : tracking_ranges_) {
-      result &= UntrackRangeImpl(reinterpret_cast<void*>(r.second->start()),
-                                 r.second->end() - r.second->start());
+      map_keys.push_back(r.first);
+    }
+
+    bool result = true;
+    for (auto k : map_keys) {
+      auto it = tracking_ranges_.find(k);
+      if (it != tracking_ranges_.end()) {
+        result &= UntrackRangeImpl(
+            reinterpret_cast<void*>(tracking_ranges_[k]->start()),
+            tracking_ranges_[k]->end() - tracking_ranges_[k]->start());
+      }
     }
     result &= derived_tracker_type::DisableMemoryTrackerImpl();
     return result;
