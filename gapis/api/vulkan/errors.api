@@ -60,10 +60,12 @@ extern void vkErrInvalidDescriptorCopy(VkDescriptorSet srcSet, u32 srcBinding, V
 
 sub void vkErrorInvalidInstance(VkInstance inst) {
   vkErrorInvalidHandle("VkInstance", as!u64(inst))
+  abort
 }
 
 sub void vkErrorInvalidPhysicalDevice(VkPhysicalDevice dev) {
   vkErrorInvalidHandle("VkPhysicalDevice", as!u64(dev))
+  abort
 }
 
 sub void vkErrorInvalidDevice(VkDevice dev) {
@@ -78,158 +80,193 @@ sub void vkErrorInvalidQueue(VkQueue queue) {
 
 sub void vkErrorInvalidCommandBuffer(VkCommandBuffer cmdbuf) {
   vkErrorInvalidHandle("VkCommandBuffer", as!u64(cmdbuf))
+  abort
 }
 
 sub void vkErrorCommandBufferIncomplete(VkCommandBuffer cmdbuf) {
   vkErrCommandBufferIncomplete(cmdbuf)
+  abort
 }
 
 sub void vkErrorCommandBufferNotRecording(VkCommandBuffer cmdbuf) {
   vkErrCommandBufferNotRecording(cmdbuf)
+  abort
 }
 
 sub void vkErrorQueryOutOfRange(VkQueryPool queryPool, u32 query) {
   vkErrQueryOutOfRange(queryPool, query)
+  abort
 }
+
 sub void vkErrorQueryUninitialized(VkQueryPool queryPool, u32 query) {
   vkErrQueryUninitialized(queryPool, query)
+  abort
 }
+
 sub void vkErrorQueryNotInactive(VkQueryPool queryPool, u32 query) {
   vkErrQueryNotInactive(queryPool, query)
+  abort
 }
+
 sub void vkErrorQueryNotActive(VkQueryPool queryPool, u32 query) {
   vkErrQueryNotActive(queryPool, query)
+  abort
 }
 
 sub void vkErrorInvalidDeviceMemory(VkDeviceMemory mem) {
   vkErrorInvalidHandle("VkDeviceMemory", as!u64(mem))
+  abort
 }
 
 sub void vkErrorInvalidBuffer(VkBuffer buf) {
   vkErrorInvalidHandle("VkBuffer", as!u64(buf))
+  abort
 }
 
 sub void vkErrorInvalidBufferView(VkBufferView view) {
   vkErrorInvalidHandle("VkBufferView", as!u64(view))
+  abort
 }
 
 sub void vkErrorInvalidImage(VkImage img) {
   vkErrorInvalidHandle("VkImage", as!u64(img))
+  abort
 }
 
 sub void vkErrorInvalidImageAspect(VkImage img, VkImageAspectFlagBits aspectBit) {
   vkErrInvalidImageSubresource(img, "VkImageAspectFlagBits", as!u32(aspectBit))
-  // Continue the mutation as this may not cause problem.
+  abort
 }
 
 sub void vkErrorInvalidImageArrayLayer(VkImage img, u32 layer) {
   vkErrInvalidImageSubresource(img, "ArrayLayer", layer)
-  // Continue the mutation as this may not cause problem.
+  abort
 }
 
 sub void vkErrorInvalidImageMipLevel(VkImage img, u32 level) {
   vkErrInvalidImageSubresource(img, "MipLevel", level)
-  // Continue the mutation as this may not cause problem.
+  abort
 }
 
 sub void vkErrorInvalidImageLayout(VkImage img, VkImageAspectFlagBits aspect, u32 layer, u32 level, VkImageLayout layout, VkImageLayout expectedLayout) {
   vkErrInvalidImageLayout(img, as!u32(aspect), layer, level, layout, expectedLayout)
-  // Continue the mutation as this may not cause problem.
+  abort
 }
 
 sub void vkErrorImageMemoryNotBound(VkImage img) {
   vkErrImageMemoryNotBound(img)
+  abort
 }
 
 sub void vkErrorInvalidImageView(VkImageView view) {
   vkErrorInvalidHandle("VkImageView", as!u64(view))
+  abort
 }
-
 
 sub void vkErrorInvalidShaderModule(VkShaderModule shader) {
   vkErrorInvalidHandle("VkShaderModule", as!u64(shader))
+  abort
 }
 
 sub void vkErrorInvalidPipeline(VkPipeline pipeline) {
   vkErrorInvalidHandle("VkPipeline", as!u64(pipeline))
+  abort
 }
 
 sub void vkErrorInvalidPipelineLayout(VkPipelineLayout layout) {
   vkErrorInvalidHandle("VkPipelineLayout", as!u64(layout))
+  abort
 }
 
 sub void vkErrorInvalidDescriptorSet(VkDescriptorSet set) {
   vkErrorInvalidHandle("VkDescriptorSet", as!u64(set))
+  abort
 }
 
 sub void vkErrorInvalidDescriptorCopy(VkDescriptorSet srcSet, u32 srcBinding, VkDescriptorSet dstSet, u32 dstBinding) {
   vkErrInvalidDescriptorCopy(srcSet, srcBinding, dstSet, dstBinding)
+  abort
 }
 
 sub void vkErrorInvalidDescriptorSetLayout(VkDescriptorSetLayout layout) {
   vkErrorInvalidHandle("VkDescriptorSetLayout", as!u64(layout))
+  abort
 }
 
 sub void vkErrorInvalidDescriptorPool(VkDescriptorPool pool) {
   vkErrorInvalidHandle("VkDescriptorPool", as!u64(pool))
+  abort
 }
 
 sub void vkErrorInvalidFence(VkFence fence) {
   vkErrorInvalidHandle("VkFence", as!u64(fence))
+  abort
 }
 
 sub void vkErrorInvalidSemaphore(VkSemaphore semaphore) {
   vkErrorInvalidHandle("VkSemaphore", as!u64(semaphore))
+  abort
 }
 
 sub void vkErrorSemaphoreNotSubmitted(VkSemaphore semaphore) {
   vkErrSemaphoreNotSubmitted(semaphore)
+  abort
 }
 
 sub void vkErrorInvalidEvent(VkEvent event) {
   vkErrorInvalidHandle("VkEvent", as!u64(event))
+  abort
 }
 
 sub void vkErrorInvalidQueryPool(VkQueryPool pool) {
   vkErrorInvalidHandle("VkQueryPool", as!u64(pool))
+  abort
 }
 
 sub void vkErrorInvalidFramebuffer(VkFramebuffer framebuffer) {
   vkErrorInvalidHandle("VkFramebuffer", as!u64(framebuffer))
+  abort
 }
 
 sub void vkErrorInvalidRenderPass(VkRenderPass renderpass) {
   vkErrorInvalidHandle("VkRenderPass", as!u64(renderpass))
+  abort
 }
 
 sub void vkErrorInvalidPipelineCache(VkPipelineCache cache) {
   vkErrorInvalidHandle("VkPipelineCache", as!u64(cache))
+  abort
 }
 
 sub void vkErrorInvalidCommandPool(VkCommandPool pool) {
   vkErrorInvalidHandle("VkCommandPool", as!u64(pool))
+  abort
 }
 
 sub void vkErrorInvalidSurface(VkSurfaceKHR surface) {
   vkErrorInvalidHandle("VkSurfaceKHR", as!u64(surface))
+  abort
 }
 
 sub void vkErrorInvalidSwapchain(VkSwapchainKHR swapchain) {
   vkErrorInvalidHandle("VkSwapchainKHR", as!u64(swapchain))
+  abort
 }
 
 sub void vkErrorInvalidDisplayMode(VkDisplayModeKHR mode) {
   vkErrorInvalidHandle("VkDisplayModeKHR", as!u64(mode))
+  abort
 }
 
 sub void vkErrorInvalidHandle(string handleType, u64 handle) {
   vkErrInvalidHandle(handleType, handle)
+  abort
 }
 
 sub void vkErrorInvalidDescriptorUpdateTemplate(VkDescriptorUpdateTemplate set) {
   vkErrorInvalidHandle("VkDescriptorUpdateTemplate", as!u64(set))
+  abort
 }
-
 
 sub void vkErrorNullPointer(string pointerType) {
   vkErrNullPointer(pointerType)
@@ -243,15 +280,15 @@ sub void vkErrorUnsupported(string unsupported) {
 
 sub void vkErrorNotNullPointer(string pointerType) {
   vkErrNotNullPointer(pointerType)
-  // Continue the mutation as this may not cause problem.
+  abort
 }
 
 sub void vkErrorUnrecognizedExtension(const char* name) {
   vkErrUnrecognizedExtension(as!string(name))
-  // Continue the mutation as this may not cause problem.
+  abort
 }
 
 sub void vkErrorExpectNVDedicatedlyAllocatedHandle(string handleType, u64 handle) {
   vkErrExpectNVDedicatedlyAllocatedHandle(handleType, handle)
-  // Continue the mutation as this may not cause problem.
+  abort
 }

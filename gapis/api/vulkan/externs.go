@@ -18,6 +18,7 @@ import (
 	"context"
 	"fmt"
 	"math/bits"
+	"os"
 	"reflect"
 
 	"github.com/google/gapid/core/log"
@@ -28,6 +29,14 @@ import (
 	"github.com/google/gapid/gapis/replay/protocol"
 	"github.com/google/gapid/gapis/service"
 )
+
+var (
+	paranoidMode bool
+)
+
+func init() {
+	paranoidMode = (os.Getenv("GAPID_PARANOID") != "")
+}
 
 type externs struct {
 	ctx   context.Context // Allowed because the externs struct is only a parameter proxy for a single call
@@ -353,6 +362,9 @@ func (e externs) fetchLinearImageSubresourceLayouts(dev VkDevice, img ImageObjec
 }
 
 func (e externs) onVkError(issue replay.Issue) {
+	if paranoidMode {
+		panic(issue.Error)
+	}
 	if f := e.s.OnError; f != nil {
 		f(issue)
 	}
