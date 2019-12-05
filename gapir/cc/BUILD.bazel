@@ -138,6 +138,7 @@ cc_test(
         "post_buffer_test.cpp",
         "replay_request_test.cpp",
         "resource_loader_test.cpp",
+        "server_connection_test.cpp",
         "stack_test.cpp",
         "test_utilities_test.cpp",
     ],
